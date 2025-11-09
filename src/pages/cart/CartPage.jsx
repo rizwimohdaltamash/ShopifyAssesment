@@ -18,36 +18,36 @@ import EmptyCart from "../../components/assets/emptycart.png";
 const CartPage = () => {
  
   const user = JSON.parse(localStorage.getItem("users"));
-  const userPrefix = user ? `${user.uid}_` : ""; // User-specific key prefix
+  // const userPrefix = user ? `${user.uid}_` : ""; // User-specific key prefix
 
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // New update quantity
-  const updateQuantity = async (id, operation) => {
-        try {
-            const productRef = doc(fireDB, "products", id);
-            const productSnap = await getDoc(productRef);
+  // const updateQuantity = async (id, operation) => {
+  //       try {
+  //           const productRef = doc(fireDB, "products", id);
+  //           const productSnap = await getDoc(productRef);
     
-            if (productSnap.exists()) {
-                const currentQuantity = productSnap.data().quantity;
+  //           if (productSnap.exists()) {
+  //               const currentQuantity = productSnap.data().quantity;
     
-                // Perform the operation (add or subtract)
-                const updatedQuantity = operation === "decrement" 
-                    ? currentQuantity - 1 
-                    : currentQuantity + 1;
+  //               // Perform the operation (add or subtract)
+  //               const updatedQuantity = operation === "decrement" 
+  //                   ? currentQuantity - 1 
+  //                   : currentQuantity + 1;
     
-                // Update the quantity in the database
-                await updateDoc(productRef, { quantity: updatedQuantity });
-            } else {
-                toast.error("Product not found in the database!");
-            }
-        } catch (error) {
-            console.error("Error updating totalQuantity:", error);
-            toast.error("Failed to update product quantity!");
-        }
-    };
+  //               // Update the quantity in the database
+  //               await updateDoc(productRef, { quantity: updatedQuantity });
+  //           } else {
+  //               toast.error("Product not found in the database!");
+  //           }
+  //       } catch (error) {
+  //           console.error("Error updating totalQuantity:", error);
+  //           toast.error("Failed to update product quantity!");
+  //       }
+  //   };
 
 
   // Fetch totalQuantity directly from Firestore for validation
@@ -250,7 +250,7 @@ const CartPage = () => {
               <h2 id="cart-heading" className="sr-only">
                 Items in your shopping cart
               </h2>
-              <ul role="list" className="divide-y divide-gray-200">
+              <ul  className="divide-y divide-gray-200">
                 {cartItems.length > 0 ? (
                   <>
                     {cartItems.map((item, index) => {

@@ -3,11 +3,11 @@ import { fireDB } from "../../firebase/FirebaseConfig"; // Replace with your Fir
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import toast from "react-hot-toast";
 import Layout from "../../components/layout/Layout";
-import { useSidebar } from "../../context/SidebarProvider.jsx";
+
 
 const AdminData = () => {
   const [sellers, setSellers] = useState([]);
-  const { isSidebarOpen } = useSidebar();
+ 
   // Fetch data from Firestore
   useEffect(() => {
     const fetchData = async () => {
